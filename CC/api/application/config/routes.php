@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 | Please see the user guide for complete details:
 |
-|	https://codeigniter.com/userguide3/general/routing.html
+|	https://codeigniter.com/user_guide/general/routing.html
 |
 | -------------------------------------------------------------------------
 | RESERVED ROUTES
@@ -49,6 +49,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = '';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+$route['product/insert'] = 'api/Product/insert';
+$route['product/show/(:any)'] = 'api/Product/show/$1';
+$route['product/list'] = 'api/Product/list';
+$route['product/update/(:num)'] = 'api/Product/update/$1';
+//$route['product/(:num)']['PUT'] = 'api/Product/$1'; // Not working properly due to PHP limitations with PUT requests
+$route['product/delete/(:num)']['DELETE'] = 'api/Product/delete/$1';
+
+$route['register'] = 'api/User/register';
+$route['login'] = 'api/User/login';
