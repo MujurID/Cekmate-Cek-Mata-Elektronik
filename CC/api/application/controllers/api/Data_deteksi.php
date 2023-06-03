@@ -2,6 +2,9 @@
 
 require APPPATH . '/libraries/REST_Controller.php';
 
+require_once "vendor/autoload.php";
+        
+use Google\Cloud\Storage\StorageClient;
 use Restserver\Libraries\REST_Controller;
 
 class Data_deteksi extends REST_Controller
@@ -86,18 +89,51 @@ class Data_deteksi extends REST_Controller
     {
         check_authorization();
 
-        //$input = $this->input->post();
-
-        $foto_mata_sebelum = $this->input->post('foto_mata_sebelum');
         $token_validation = $this->authorization_token->validateToken();
         $users_id = $token_validation["data"]->uid;
 
-        $this->Data_deteksi_model->insert($foto_mata_sebelum, $users_id);
+        //$input = $this->input->post();
 
-        $this->response([
-            'status' => TRUE,
-            'message' => 'Data deteksi created successfully.'
-        ], REST_Controller::HTTP_OK);
+        #$foto_mata_sebelum = $this->input->post('foto_mata_sebelum');
+        $foto_mata_sebelum_name = $_FILES['foto_mata_sebelum']['name'];
+        $foto_mata_sebelum_tmp_name = $_FILES['foto_mata_sebelum']['tmp_name'];
+
+        
+        try {
+            $storage = new StorageClient([
+                'keyFilePath' => 'cekmate-0f1c195007f5.json',
+            ]);
+        
+            $bucketName = 'cekmate_data_deteksi';
+            #$fileName = $foto_mata_sebelum_name;
+            $fileName = date('Y-m-d_H-i-s',time()) . '_' . $users_id . '.' . pathinfo($foto_mata_sebelum_name, PATHINFO_EXTENSION);
+            $bucket = $storage->bucket($bucketName);
+            $object = $bucket->upload(
+                fopen($foto_mata_sebelum_tmp_name, 'r'),
+                [
+                    'name' => $fileName,
+                ]
+            );
+            //echo "File uploaded successfully. File path is: https://storage.googleapis.com/$bucketName/$fileName";
+
+            $foto_mata_sebelum = $fileName;
+            $this->Data_deteksi_model->insert($foto_mata_sebelum, $users_id);
+    
+            $this->response([
+                'status' => TRUE,
+                'message' => 'Data deteksi created successfully.'
+            ], REST_Controller::HTTP_OK);
+
+        } catch(Exception $e) {
+            //echo $e->getMessage();
+            $this->response([
+                'status' => FALSE,
+                'message' => $e->getMessage()
+            ], REST_Controller::HTTP_OK);
+        }
+
+
+
     }
 
     /**
