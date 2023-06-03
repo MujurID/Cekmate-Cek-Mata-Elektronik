@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "d544961b-1785-4299-9312-caf4eb1392a2",
-		"name": "php_codeigniter3_rest_api_jwt production",
+		"_postman_id": "6aa6f331-39cc-4b92-b8c0-506344e1b5ce",
+		"name": "php_codeigniter3_rest_api_jwt",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -15,17 +15,17 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "newUser1",
+							"value": "test2",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "user1@example.com",
+							"value": "user2@example.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "123456",
+							"value": "testpw",
 							"type": "text"
 						}
 					]
@@ -52,12 +52,12 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "newUser1",
+							"value": "test2",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "123456",
+							"value": "testpw",
 							"type": "text"
 						}
 					]
@@ -81,7 +81,7 @@
 				"header": [
 					{
 						"key": "Jwt-Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxIiwidXNlcm5hbWUiOiJuZXdVc2VyMSIsIkFQSV9USU1FIjoxNjgxOTI0NTg4fQ.prrze1E3X5gufN8lXiPXBU-ahYSe4rQHpINz1x733j4",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwidXNlcm5hbWUiOiJ0ZXN0IiwiQVBJX1RJTUUiOjE2ODU3NzE1NTh9.eL90BtURwQm3uNxG3sNPkw_HV4JDgPYc_GFS-_xT-Ug",
 						"type": "default"
 					}
 				],
@@ -100,22 +100,22 @@
 			"response": []
 		},
 		{
-			"name": "{{url}}/product/list",
+			"name": "{{url}}/data_deteksi/list",
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Jwt-Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxIiwidXNlcm5hbWUiOiJuZXdVc2VyMSIsIkFQSV9USU1FIjoxNjgxOTI0NTg4fQ.prrze1E3X5gufN8lXiPXBU-ahYSe4rQHpINz1x733j4"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzIiwidXNlcm5hbWUiOiJ0ZXN0MiIsIkFQSV9USU1FIjoxNjg1Nzc1MDMwfQ.ybZhNZLWGS3ETbtMDSouVSvh1ZuqEDm5xz31CAtbowg"
 					}
 				],
 				"url": {
-					"raw": "{{url}}/product/list",
+					"raw": "{{url}}/data_deteksi/list",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"product",
+						"data_deteksi",
 						"list"
 					]
 				}
@@ -123,22 +123,22 @@
 			"response": []
 		},
 		{
-			"name": "{{url}}/product/show/1",
+			"name": "{{url}}/data_deteksi/show/1",
 			"request": {
 				"method": "GET",
 				"header": [
 					{
 						"key": "Jwt-Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxIiwidXNlcm5hbWUiOiJuZXdVc2VyMSIsIkFQSV9USU1FIjoxNjgxODQ4Nzc4fQ.KsKMqm6l5Co256JmkaOxjp9J2xlCZrBwpEKFXkvMskE"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzIiwidXNlcm5hbWUiOiJ0ZXN0MiIsIkFQSV9USU1FIjoxNjg1Nzc1MDMwfQ.ybZhNZLWGS3ETbtMDSouVSvh1ZuqEDm5xz31CAtbowg"
 					}
 				],
 				"url": {
-					"raw": "{{url}}/product/show/1",
+					"raw": "{{url}}/data_deteksi/show/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"product",
+						"data_deteksi",
 						"show",
 						"1"
 					]
@@ -147,37 +147,32 @@
 			"response": []
 		},
 		{
-			"name": "{{url}}/product/insert",
+			"name": "{{url}}/data_deteksi/insert",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Jwt-Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxIiwidXNlcm5hbWUiOiJuZXdVc2VyMSIsIkFQSV9USU1FIjoxNjgxODQ4Nzc4fQ.KsKMqm6l5Co256JmkaOxjp9J2xlCZrBwpEKFXkvMskE"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwidXNlcm5hbWUiOiJ0ZXN0IiwiQVBJX1RJTUUiOjE2ODU3NzE1NTh9.eL90BtURwQm3uNxG3sNPkw_HV4JDgPYc_GFS-_xT-Ug"
 					}
 				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "name",
-							"value": "BrunaChicken",
-							"type": "text"
-						},
-						{
-							"key": "price",
-							"value": "45.60",
+							"key": "foto_mata_sebelum",
+							"value": "mata2.jpg",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "{{url}}/product/insert",
+					"raw": "{{url}}/data_deteksi/insert",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"product",
+						"data_deteksi",
 						"insert"
 					]
 				}
@@ -185,61 +180,22 @@
 			"response": []
 		},
 		{
-			"name": "{{url}}/product/update/1",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Jwt-Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxIiwidXNlcm5hbWUiOiJuZXdVc2VyMSIsIkFQSV9USU1FIjoxNjgxODQ4Nzc4fQ.KsKMqm6l5Co256JmkaOxjp9J2xlCZrBwpEKFXkvMskE"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "BrunaChicken",
-							"type": "text"
-						},
-						{
-							"key": "price",
-							"value": "55.50",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{url}}/product/update/1",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"product",
-						"update",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "{{url}}/product/delete/1",
+			"name": "{{url}}/data_deteksi/delete/1",
 			"request": {
 				"method": "DELETE",
 				"header": [
 					{
 						"key": "Jwt-Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIxIiwidXNlcm5hbWUiOiJuZXdVc2VyMSIsIkFQSV9USU1FIjoxNjgxODQ4Nzc4fQ.KsKMqm6l5Co256JmkaOxjp9J2xlCZrBwpEKFXkvMskE"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI2IiwidXNlcm5hbWUiOiJuZXdVc2VyNDQxIiwiQVBJX1RJTUUiOjE2ODE2NjA0ODN9.5GgUloKx8j4DOL2HyI_oaciV31-zZnVCCEzymYkomI0"
 					}
 				],
 				"url": {
-					"raw": "{{url}}/product/delete/1",
+					"raw": "{{url}}/data_deteksi/delete/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"product",
+						"data_deteksi",
 						"delete",
 						"1"
 					]
@@ -271,7 +227,7 @@
 	"variable": [
 		{
 			"key": "url",
-			"value": "https://vittoretti.com/portfolio/projects/rest_api_jwt",
+			"value": "http://localhost/Cekmate-Cek-Mata-Elektronik/CC/api",
 			"type": "string"
 		}
 	]

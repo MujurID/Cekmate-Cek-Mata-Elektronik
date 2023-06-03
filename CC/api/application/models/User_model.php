@@ -10,12 +10,15 @@ class User_model extends CI_Model {
 		
 	}
 	
-	public function create_user($username, $email, $password) {
+	public function create_user($username, $email, $password, $nama, $no_hp, $tanggal_lahir) {
 		
 		$data = array(
 			'username'   => $username,
 			'email'      => $email,
 			'password'   => $this->hash_password($password),
+			'nama'      => $nama,
+			'no_hp'      => $no_hp,
+			'tanggal_lahir'      => $tanggal_lahir,
 		);
 		
 		$this->db->insert('users', $data);

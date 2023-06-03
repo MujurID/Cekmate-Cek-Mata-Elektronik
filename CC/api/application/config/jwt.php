@@ -5,7 +5,7 @@
 | JWT Secure Key
 |--------------------------------------------------------------------------
 */
-$config['jwt_key'] = 'sPnqLAKkacMTGiLrq9MmeY5tYdm8D6T9Yx6BzigN';
+$config['jwt_key'] = 'cekmate-C166DKX3893';
 
 
 /*
@@ -36,4 +36,4 @@ $config['token_header'] = 'Jwt-Authorization';
 | ( 1 Hour ) : 60 * 60     = 3600
 | ( 1 Minute ) : 60        = 60
 */
-$config['token_expire_time'] = 600;
+$config['token_expire_time'] = 864000;

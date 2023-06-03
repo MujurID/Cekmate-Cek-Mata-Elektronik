@@ -36,9 +36,12 @@ class User extends REST_Controller
 		$username = $this->input->post('username');
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
+		$nama = $this->input->post('nama');
+		$no_hp = $this->input->post('no_hp');
+		$tanggal_lahir = $this->input->post('tanggal_lahir');
 
 		// creating user
-		$id = $this->user_model->create_user($username, $email, $password);
+		$id = $this->user_model->create_user($username, $email, $password, $nama, $no_hp, $tanggal_lahir);
 
 		if (!$id) {
 			// user not created for some reason
@@ -102,3 +105,5 @@ class User extends REST_Controller
 		], REST_Controller::HTTP_OK);
 	}
 }
+
+

@@ -54,12 +54,19 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['product/insert'] = 'api/Product/insert';
+/*$route['product/insert'] = 'api/Product/insert';
 $route['product/show/(:any)'] = 'api/Product/show/$1';
 $route['product/list'] = 'api/Product/list';
 $route['product/update/(:num)'] = 'api/Product/update/$1';
 //$route['product/(:num)']['PUT'] = 'api/Product/$1'; // Not working properly due to PHP limitations with PUT requests
-$route['product/delete/(:num)']['DELETE'] = 'api/Product/delete/$1';
+$route['product/delete/(:num)']['DELETE'] = 'api/Product/delete/$1';*/
 
 $route['register'] = 'api/User/register';
 $route['login'] = 'api/User/login';
+
+$route['data_deteksi/insert'] = 'api/Data_deteksi/insert';
+$route['data_deteksi/show/(:num)'] = 'api/Data_deteksi/show/$1';
+$route['data_deteksi/list'] = 'api/Data_deteksi/list';
+//$route['product/update/(:num)'] = 'api/Product/update/$1';
+//$route['product/(:num)']['PUT'] = 'api/Product/$1'; // Not working properly due to PHP limitations with PUT requests
+$route['data_deteksi/delete/(:num)']['DELETE'] = 'api/Data_deteksi/delete/$1';
