@@ -1,4 +1,5 @@
 <?php
+//error_reporting(E_ALL & ~E_WARNING);
 /**
  * CodeIgniter
  *
@@ -68,6 +69,12 @@ switch (ENVIRONMENT)
 	case 'development':
 		error_reporting(-1);
 		ini_set('display_errors', 1);
+	break;
+
+	case 'development-cekmate':
+		error_reporting(-1);
+		ini_set('display_errors', 1);
+		error_reporting(E_ALL & ~E_WARNING);
 	break;
 
 	case 'testing':

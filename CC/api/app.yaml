@@ -1,0 +1,21 @@
+service: default
+
+runtime: php74
+#api_version: 1
+#threadsafe: true
+
+env_variables:
+  # Set the GCP region to use for the App Engine app.
+  # e.g. us-central1, europe-west1, asia-southeast1.
+  # See https://cloud.google.com/compute/docs/regions-zones/
+  # for a list of all regions.
+  GOOGLE_CLOUD_REGION: asia-southeast2
+  CI_ENV: development-cekmate
+
+handlers:
+- url: /(.+\.php)$
+  script: auto
+- url: /.*
+  static_files: \1
+  upload: (.*)
+

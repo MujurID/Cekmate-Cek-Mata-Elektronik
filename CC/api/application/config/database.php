@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '34.128.119.108',
 	'username' => 'root',
-	'password' => '',
-	'database' => 'cekmate',
+	'password' => 'Cekmate123@',
+	'database' => 'cekmate_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
