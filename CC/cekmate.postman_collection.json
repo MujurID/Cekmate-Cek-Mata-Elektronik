@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "6aa6f331-39cc-4b92-b8c0-506344e1b5ce",
-		"name": "php_codeigniter3_rest_api_jwt",
+		"name": "cekmate",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -46,7 +46,12 @@
 			"name": "{{url}}/login",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Jwt-Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzIiwidXNlcm5hbWUiOiJ0ZXN0MiIsIkFQSV9USU1FIjoxNjg1Nzc1MDMwfQ.ybZhNZLWGS3ETbtMDSouVSvh1ZuqEDm5xz31CAtbowg"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -153,7 +158,7 @@
 				"header": [
 					{
 						"key": "Jwt-Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwidXNlcm5hbWUiOiJ0ZXN0IiwiQVBJX1RJTUUiOjE2ODU3NzE1NTh9.eL90BtURwQm3uNxG3sNPkw_HV4JDgPYc_GFS-_xT-Ug"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwidXNlcm5hbWUiOiJ0ZXN0IiwiQVBJX1RJTUUiOjE2ODU5OTIzOTd9.9nUADi41xOtvxeJMgxw16TvIq-iy8wXuh7uBMcxT4j0"
 					}
 				],
 				"body": {
@@ -161,8 +166,8 @@
 					"formdata": [
 						{
 							"key": "foto_mata_sebelum",
-							"value": "mata2.jpg",
-							"type": "text"
+							"type": "file",
+							"src": "/C:/Users/presiden/Downloads/WhatsApp Image 2023-06-02 at 16.56.05.jpg"
 						}
 					]
 				},
@@ -202,6 +207,54 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "api_ml",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "ya29.a0AWY7Ckmx3cLnf8dAOKk-TyliIFBBQbU8y2A8qt_uk_GorqWG5Ccclf18qoguuXDzcKxioiSpZ11FNHCaArV-IlLsER5Ol8gxAK2zY1cVHSlm7my7o-pjJoTlCsC9xq51d5Zun6-IJPOPu3zRY7QAZWNKYKiWMHhJWEZZ98Qq2kUUe5Yw2OYefMuD9MnNbWRLJSOC6wPUVb5uM9_-Dn7i3_CCTYVES2K8sAaCgYKAecSARASFQG1tDrp-wegFOXaiiSZJNrVOXm5Fg0233",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "CloudShellAuthorization",
+						"value": "Bearer ya29.a0AWY7Ckmx3cLnf8dAOKk-TyliIFBBQbU8y2A8qt_uk_GorqWG5Ccclf18qoguuXDzcKxioiSpZ11FNHCaArV-IlLsER5Ol8gxAK2zY1cVHSlm7my7o-pjJoTlCsC9xq51d5Zun6-IJPOPu3zRY7QAZWNKYKiWMHhJWEZZ98Qq2kUUe5Yw2OYefMuD9MnNbWRLJSOC6wPUVb5uM9_-Dn7i3_CCTYVES2K8sAaCgYKAecSARASFQG1tDrp-wegFOXaiiSZJNrVOXm5Fg0233",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/presiden/Downloads/cekmate/test2.PNG"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://apiml-dot-cekmate.et.r.appspot.com/predict",
+					"protocol": "https",
+					"host": [
+						"apiml-dot-cekmate",
+						"et",
+						"r",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"predict"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -227,7 +280,7 @@
 	"variable": [
 		{
 			"key": "url",
-			"value": "http://localhost/Cekmate-Cek-Mata-Elektronik/CC/api",
+			"value": "https://cekmate.et.r.appspot.com/",
 			"type": "string"
 		}
 	]
