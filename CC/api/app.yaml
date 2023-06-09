@@ -12,6 +12,13 @@ env_variables:
   GOOGLE_CLOUD_REGION: asia-southeast2
   CI_ENV: development-cekmate
 
+instance_class: F1
+automatic_scaling:
+  min_instances: 1
+  max_instances: 2
+  min_idle_instances: 1
+  max_idle_instances: 2
+
 handlers:
 - url: /(.+\.php)$
   script: auto
