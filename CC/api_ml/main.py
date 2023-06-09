@@ -6,17 +6,10 @@ from io import BytesIO
 from tensorflow.keras.utils import img_to_array #pip install tensorflow keras
 import numpy as np #pip install numpy
 from tensorflow.keras.models import load_model
-from google.cloud import storage 
+ 
 
 app = Flask(__name__)
 
-
-# create storage client
-storage_client = storage.Client()
-
-# define bucket details
-bucket_name = 'cekmate_data_deteksi'
-bucket = storage_client.bucket(bucket_name)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -49,12 +42,6 @@ def predict():
     # use json module to preserve key order
     json_response = json.dumps(response, sort_keys=False)
     return json_response
-
-     # upload result to cloud storage
-    result_blob = bucket.blob('result.json')
-    result_blob.upload_from_string(result_json, content_type='application/json')
-    result_blob.acl.all().grant_read()
-    result_blob.acl.save()
 
     # return prediction result
     return jsonify(response)
