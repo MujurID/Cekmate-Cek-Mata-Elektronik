@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Cekmate</string>
+    <string name="ek_img_content">ExportKit Image</string>
+    <string name="beranda_string">Beranda</string>
+    <string name="cek_leukokoria_string">Cek Leukokoria</string>
+    <string name="klinik_mata_terdekat_string">Klinik MataTerdekat</string>
+    <string name="riwayat_string">Riwayat</string>
+    <string name="pesan_string">Pesan</string>
+    <string name="akun_string">Akun</string>
+    <string name="beranda_ek1_string">Beranda</string>
+    <string name="kesehatan_mata">Kesehatan Mata </string>
+    <string name="informasi_string">Informasi</string>
+    <string name="leukokoria_string">Leukokoria</string>
+    <string name="leukokoria_ek1_string">Leukokoria</string>
 </resources>
