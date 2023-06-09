@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="_bg__home_ek2_color">#F2F4F9</color>
+    <color name="rectangle_2_color">#FFFFFF</color>
+    <color name="rectangle_1_color">#51A2DA</color>
+    <color name="rectangle_1_ek1_color">#C4C4C4</color>
+    <color name="line_1_color">#969696</color>
+    <color name="cek_leukokoria_color">#000000</color>
 </resources>
