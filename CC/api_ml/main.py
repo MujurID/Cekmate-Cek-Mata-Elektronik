@@ -6,10 +6,8 @@ from io import BytesIO
 from tensorflow.keras.utils import img_to_array #pip install tensorflow keras
 import numpy as np #pip install numpy
 from tensorflow.keras.models import load_model
- 
 
 app = Flask(__name__)
-
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -42,9 +40,6 @@ def predict():
     # use json module to preserve key order
     json_response = json.dumps(response, sort_keys=False)
     return json_response
-
-    # return prediction result
-    return jsonify(response)
 
 if __name__ == '__main__':
     app.run(debug=True)
