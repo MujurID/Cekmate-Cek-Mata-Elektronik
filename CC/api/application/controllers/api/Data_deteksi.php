@@ -117,48 +117,20 @@ class Data_deteksi extends REST_Controller
             //echo "File uploaded successfully. File path is: https://storage.googleapis.com/$bucketName/$fileName";
 
             $foto_mata_sebelum = $fileName;
-            $status_penyakit = 0; // Set the initial status_penyakit value to 0
-            $status_deteksi = 0; // Set the initial status_deteksi value to 0
+            $this->Data_deteksi_model->insert($foto_mata_sebelum, $users_id);
+    
+            $this->response([
+                'status' => TRUE,
+                'message' => 'Data deteksi created successfully.'
+            ], REST_Controller::HTTP_OK);
 
-            // Store the result in the MySQL database
-            $databaseHost = '34.128.119.108';
-            $databaseName = 'cekmate-mysql';
-            $databaseUsername = 'root';
-            $databasePassword = '';
-
-            $conn = new mysqli($databaseHost, $databaseUsername, $databasePassword, $databaseName);
-
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $sql = "INSERT INTO data_deteksi (foto_mata_sebelum, user_id, status_penyakit, status_deteksi) 
-                    VALUES ('$foto_mata_sebelum', $users_id, $status_penyakit, $status_deteksi)";
-
-            if ($conn->query($sql) === TRUE) {
-                $conn->close();
-
-                $this->response([
-                    'status' => TRUE,
-                    'message' => 'Data deteksi created successfully.'
-                ], REST_Controller::HTTP_OK);
-            } else {
-                $conn->close();
-
-                $this->response([
-                    'status' => FALSE,
-                    'message' => 'Failed to store data in the database.'
-                ], REST_Controller::HTTP_OK);
-            }
-        } catch (Exception $e) {
-            // ...
-
+        } catch(Exception $e) {
+            //echo $e->getMessage();
             $this->response([
                 'status' => FALSE,
                 'message' => $e->getMessage()
             ], REST_Controller::HTTP_OK);
         }
-    }
 
 
 
