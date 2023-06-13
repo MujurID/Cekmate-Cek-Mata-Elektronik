@@ -144,7 +144,7 @@ class Data_deteksi extends REST_Controller
 			 throw new Exception("Failed to decode the processed result from ML service.");
 		 }
 	 
-		 return $processedResult;
+		 return $processedResult['value'];
 	 }
 
     /**
