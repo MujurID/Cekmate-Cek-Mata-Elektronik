@@ -120,6 +120,39 @@
 			"response": []
 		},
 		{
+			"name": "{{url}}/data_deteksi/insert",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Jwt-Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI0IiwidXNlcm5hbWUiOiJ0ZXN0MyIsIkFQSV9USU1FIjoxNjg2ODE3NzEzfQ.4sPkwo7rUCD8uNhzw4Iqh7XrtTNINqVv0tmjUCtU6LY"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "foto_mata_sebelum",
+							"type": "file",
+							"src": "/C:/Users/presiden/Downloads/cekmate/lasttest.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/data_deteksi/insert",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"data_deteksi",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "{{url}}/data_deteksi/list",
 			"request": {
 				"method": "GET",
@@ -161,39 +194,6 @@
 						"data_deteksi",
 						"show",
 						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "{{url}}/data_deteksi/insert",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Jwt-Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwidXNlcm5hbWUiOiJ0ZXN0IiwiQVBJX1RJTUUiOjE2ODU5OTIzOTd9.9nUADi41xOtvxeJMgxw16TvIq-iy8wXuh7uBMcxT4j0"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "foto_mata_sebelum",
-							"type": "file",
-							"src": "/C:/Users/presiden/Downloads/WhatsApp Image 2023-06-02 at 16.56.05.jpg"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{url}}/data_deteksi/insert",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"data_deteksi",
-						"insert"
 					]
 				}
 			},
