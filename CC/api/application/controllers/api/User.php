@@ -101,7 +101,8 @@ class User extends REST_Controller
 		$this->response([
 			'status' => TRUE,
 			'message' => 'Login success!',
-			'access_token' => $tokenData
+			'access_token' => $tokenData,
+			'user' => $user
 		], REST_Controller::HTTP_OK);
 	}
 }

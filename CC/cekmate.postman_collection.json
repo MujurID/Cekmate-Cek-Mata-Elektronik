@@ -15,18 +15,33 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "test2",
+							"value": "test3",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "user2@example.com",
+							"value": "user3@example.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
 							"value": "testpw",
 							"type": "text"
+						},
+						{
+							"key": "nama",
+							"value": "ini untuk nama",
+							"type": "default"
+						},
+						{
+							"key": "no_hp",
+							"value": "081234567890",
+							"type": "default"
+						},
+						{
+							"key": "tanggal_lahir",
+							"value": "2001-12-30",
+							"type": "default"
 						}
 					]
 				},
@@ -57,7 +72,7 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "test2",
+							"value": "test3",
 							"type": "text"
 						},
 						{
@@ -111,7 +126,7 @@
 				"header": [
 					{
 						"key": "Jwt-Authorization",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIzIiwidXNlcm5hbWUiOiJ0ZXN0MiIsIkFQSV9USU1FIjoxNjg1Nzc1MDMwfQ.ybZhNZLWGS3ETbtMDSouVSvh1ZuqEDm5xz31CAtbowg"
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiIyIiwidXNlcm5hbWUiOiJ0ZXN0IiwiQVBJX1RJTUUiOjE2ODY4MTU5MjF9.z9otAEr01cAJywtHmboD2fPxhP2rDVTbRJNvNUZcm84"
 					}
 				],
 				"url": {
@@ -209,7 +224,7 @@
 			"response": []
 		},
 		{
-			"name": "api_ml",
+			"name": "TESTING api_ml",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -282,6 +297,12 @@
 			"key": "url",
 			"value": "https://cekmate.et.r.appspot.com/",
 			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "http://localhost/Cekmate-Cek-Mata-Elektronik/CC/api/",
+			"type": "default",
+			"disabled": true
 		}
 	]
 }

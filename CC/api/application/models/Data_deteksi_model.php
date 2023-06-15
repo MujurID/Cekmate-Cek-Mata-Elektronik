@@ -15,7 +15,8 @@ class Data_deteksi_model extends CI_Model {
 
     public function list($users_id = 0)
 	{
-        $query = $this->db->get_where("data_deteksi", ['users_id' => $users_id])->result();
+        //$query = $this->db->get_where("data_deteksi", ['users_id' => $users_id])->result();
+		$query = $this->db->order_by('id', 'DESC')->get_where("data_deteksi", ['users_id' => $users_id])->result();
         return $query;
 	}
 
@@ -26,11 +27,14 @@ class Data_deteksi_model extends CI_Model {
 	}
       
 
-    public function insert($foto_mata_sebelum, $users_id)
+    public function insert($foto_mata_path, $foto_mata_url, $users_id, $result, $confidence)
     {
         $data = array(
-			'foto_mata_sebelum'   => $foto_mata_sebelum,
-			'users_id'      => $users_id,
+			'foto_mata_path'	=> $foto_mata_path,
+			'foto_mata_url'		=> $foto_mata_url,
+			'users_id'      	=> $users_id,
+			'status_penyakit'	=> $result,
+			'confidence'		=> $confidence
 		);
         $this->db->insert('data_deteksi',$data);
         return $this->db->insert_id(); 

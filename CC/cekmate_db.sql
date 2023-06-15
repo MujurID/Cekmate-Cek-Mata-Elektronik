@@ -2,9 +2,9 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 03, 2023 at 08:52 AM
--- Server version: 10.4.27-MariaDB
+-- Host: 34.128.119.108
+-- Generation Time: Jun 15, 2023 at 09:50 AM
+-- Server version: 5.7.40-google-log
 -- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `php_codeigniter3_rest_api_jwt`
+-- Database: `cekmate_db`
 --
 
 -- --------------------------------------------------------
@@ -29,20 +29,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `data_deteksi` (
   `id` int(11) NOT NULL,
-  `foto_mata_sebelum` text NOT NULL,
-  `foto_mata_sesudah` text NOT NULL,
+  `foto_mata_path` text NOT NULL,
+  `foto_mata_url` text NOT NULL,
   `users_id` int(11) NOT NULL,
-  `status_penyakit` int(11) NOT NULL,
-  `status_deteksi` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status_penyakit` varchar(20) NOT NULL,
+  `status_deteksi` varchar(20) NOT NULL,
+  `confidence` varchar(20) NOT NULL,
+  `keterangan_lain` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `data_deteksi`
 --
 
-INSERT INTO `data_deteksi` (`id`, `foto_mata_sebelum`, `foto_mata_sesudah`, `users_id`, `status_penyakit`, `status_deteksi`) VALUES
-(1, 'mata1.jpg', '', 2, 0, 0),
-(2, 'mata2.jpg', '', 2, 0, 0);
+INSERT INTO `data_deteksi` (`id`, `foto_mata_path`, `foto_mata_url`, `users_id`, `status_penyakit`, `status_deteksi`, `confidence`, `keterangan_lain`) VALUES
+(1, 'mata1.jpg', '', 2, '0', '0', '', ''),
+(2, 'mata2.jpg', '', 2, '0', '0', '', ''),
+(3, '2023-06-05_19-14-37_2.jpg', '', 2, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -58,7 +61,7 @@ CREATE TABLE `users` (
   `nama` varchar(100) DEFAULT NULL,
   `no_hp` varchar(20) DEFAULT NULL,
   `tanggal_lahir` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -94,7 +97,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `data_deteksi`
 --
 ALTER TABLE `data_deteksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

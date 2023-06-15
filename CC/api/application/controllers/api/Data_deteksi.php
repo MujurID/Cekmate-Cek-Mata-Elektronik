@@ -80,6 +80,37 @@ class Data_deteksi extends REST_Controller
         ], REST_Controller::HTTP_OK);
     }
 
+	private function send_image_to_ml($api_ml_url, $imagePath)
+	{
+		// Create a cURL request to send the image to the ML URL
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $api_ml_url);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, [
+			'file' => new CurlFile($imagePath)
+		]);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($curl);
+	
+		// Handle the response from the ML service
+		if ($response === false) {
+			$error = curl_error($curl);
+			curl_close($curl);
+			throw new Exception("Failed to send image to ML service: $error");
+		}
+	
+		curl_close($curl);
+	
+		// Parse and return the processed result
+		$processedResult = json_decode($response, true);
+		if (!$processedResult) {
+			throw new Exception("Failed to decode the processed result from ML service.");
+		}
+	
+		//return $processedResult['value'];
+		return $processedResult;
+	}
+
     /**
      * INSERT | POST method.
      *
@@ -87,65 +118,63 @@ class Data_deteksi extends REST_Controller
      */
     public function insert_post()
 	 {
-		 check_authorization();
-	 
-		 $token_validation = $this->authorization_token->validateToken();
-		 $users_id = $token_validation["data"]->uid;
-	 
-		 // Retrieve the uploaded file
-		 $foto_mata_sebelum_name = $_FILES['foto_mata_sebelum']['name'];
-		 $foto_mata_sebelum_tmp_name = $_FILES['foto_mata_sebelum']['tmp_name'];
-	 
-		 try {
+        check_authorization();
+
+        $token_validation = $this->authorization_token->validateToken();
+        $users_id = $token_validation["data"]->uid;
+
+        //$input = $this->input->post();
+
+        #$foto_mata_sebelum = $this->input->post('foto_mata_sebelum');
+        $foto_mata_sebelum_name = $_FILES['foto_mata_sebelum']['name'];
+        $foto_mata_sebelum_tmp_name = $_FILES['foto_mata_sebelum']['tmp_name'];
+
+        
+        try {
+            $storage = new StorageClient([
+                'keyFilePath' => 'cekmate-0f1c195007f5.json',
+            ]);
+        
+            $bucketName = 'cekmate_data_deteksi';
+            #$fileName = $foto_mata_sebelum_name;
+            $fileName = date('Y-m-d_H-i-s',time()) . '_' . $users_id . '.' . pathinfo($foto_mata_sebelum_name, PATHINFO_EXTENSION);
+            $bucket = $storage->bucket($bucketName);
+            $object = $bucket->upload(
+                fopen($foto_mata_sebelum_tmp_name, 'r'),
+                [
+                    'name' => $fileName,
+                ]
+            );
+            //echo "File uploaded successfully. File path is: https://storage.googleapis.com/$bucketName/$fileName";
+
+			//BUAT GET API ML
 			 // Send the image to the ML URL for processing
-			 $ml_url = 'https://apiml-dot-cekmate.et.r.appspot.com/';
-			 $processedResult = send_image_to_ml($ml_url, $foto_mata_sebelum_tmp_name);
-	 
-			 // Store the processed result in the database
-			 $this->Data_deteksi_model->insert_processed_result($foto_mata_sebelum_name, $users_id, $processedResult);
-	 
-			 $this->response([
-				 'status' => TRUE,
-				 'message' => 'Data deteksi created successfully.'
-			 ], REST_Controller::HTTP_OK);
-		 } catch (Exception $e) {
-			 // Handle exceptions and return error response
-			 $this->response([
-				 'status' => FALSE,
-				 'message' => $e->getMessage()
-			 ], REST_Controller::HTTP_OK);
-		 }
-	 }
-	 
-	 function send_image_to_ml($ml_url, $imagePath)
-	 {
-		 // Create a cURL request to send the image to the ML URL
-		 $curl = curl_init();
-		 curl_setopt($curl, CURLOPT_URL, $ml_url);
-		 curl_setopt($curl, CURLOPT_POST, true);
-		 curl_setopt($curl, CURLOPT_POSTFIELDS, [
-			 'image' => new CurlFile($imagePath)
-		 ]);
-		 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		 $response = curl_exec($curl);
-	 
-		 // Handle the response from the ML service
-		 if ($response === false) {
-			 $error = curl_error($curl);
-			 curl_close($curl);
-			 throw new Exception("Failed to send image to ML service: $error");
-		 }
-	 
-		 curl_close($curl);
-	 
-		 // Parse and return the processed result
-		 $processedResult = json_decode($response, true);
-		 if (!$processedResult) {
-			 throw new Exception("Failed to decode the processed result from ML service.");
-		 }
-	 
-		 return $processedResult['value'];
-	 }
+			 $ml_url = 'https://apiml-dot-cekmate.et.r.appspot.com/predict';
+			 $processedResult = $this->send_image_to_ml($ml_url, $foto_mata_sebelum_tmp_name);
+
+            $foto_mata_path = $fileName;
+			$foto_mata_url = "https://storage.googleapis.com/$bucketName/$fileName";
+			$result = $processedResult['result'];
+			$confidence = $processedResult['confidence'];
+            //$this->Data_deteksi_model->insert($foto_mata_sebelum, $users_id);
+			$this->Data_deteksi_model->insert($foto_mata_path, $foto_mata_url, $users_id, $result, $confidence);
+    
+            $this->response([
+                'status' => TRUE,
+                'message' => 'Data deteksi created successfully.'
+            ], REST_Controller::HTTP_OK);
+
+		} catch(Exception $e) {
+            //echo $e->getMessage();
+            $this->response([
+                'status' => FALSE,
+                'message' => $e->getMessage()
+            ], REST_Controller::HTTP_OK);
+        }
+
+    }
+
+
 
     /**
      * UPDATE | PUT method.
